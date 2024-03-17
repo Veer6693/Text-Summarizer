@@ -2,10 +2,12 @@ from textsummarizer.logging import logger
 from textsummarizer.pipeline.stage_1_data_ingestion import DataIngestionTrainingpipeline
 from textsummarizer.pipeline.stage_2_data_validation import DataValidationTrainingpipeline
 from textsummarizer.pipeline.stage_3_data_transformation import DataTransformationTrainingpipeline
+from textsummarizer.pipeline.stage_4_model_trainer import ModelTrainerTrainingpipeline
 
 
 
-stage_name = "Data Ingestion Training"
+
+stage_name = "Data Ingestion Stage"
 try:
     logger.info(f"============ {stage_name} started ============")
     data_ingestion = DataIngestionTrainingpipeline()
@@ -19,7 +21,7 @@ except Exception as e:
 
 
 
-stage_name = "Data Validation Training"
+stage_name = "Data Validation Stage"
 try:
     logger.info(f"============ {stage_name} started ============")
     data_validation = DataValidationTrainingpipeline()
@@ -33,7 +35,7 @@ except Exception as e:
 
 
 
-stage_name = "Data Transformation Training"
+stage_name = "Data Transformation Stage"
 try:
     logger.info(f"============ {stage_name} started ============")
     data_transformation = DataTransformationTrainingpipeline()
@@ -44,3 +46,20 @@ except Exception as e:
     logger.error(f"============ {stage_name} failed ============")
     logger.exception(e)
     raise e
+
+
+
+stage_name = "Model Trainer Stage"
+try:
+    logger.info(f"============ {stage_name} started ============")
+    model_trainer = ModelTrainerTrainingpipeline()
+    model_trainer.main()
+    logger.info(f"============ {stage_name} completed ============")
+
+except Exception as e:
+    logger.error(f"============ {stage_name} failed ============")
+    logger.exception(e)
+    raise e
+
+
+
